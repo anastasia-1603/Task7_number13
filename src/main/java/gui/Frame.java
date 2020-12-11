@@ -79,7 +79,7 @@ public class Frame extends JFrame
      private void initFrame(JPanel panel)
      {
           this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-          this.setBounds(0, 0, 500, 200);
+          this.setBounds(0, 0, 500, 210);
           this.setContentPane(panel);
           this.setVisible(true);
      }
