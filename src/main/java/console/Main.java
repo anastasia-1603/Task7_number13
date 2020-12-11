@@ -1,35 +1,34 @@
 package console;
 
 import common.*;
-
 import java.util.Scanner;
 
 public class Main
 {
     public static void main(String[] args)
     {
-        int[] sourceArray = Utils.readIntArrayFromConsole("array of integer numbers");
-        startProgram(sourceArray);
+        int[] inputArray = Utils.readIntArrayFromConsole("array of integer numbers");
+        startProgram(inputArray);
 
         System.out.println("Run with an array of random numbers? [yes / no]");
         startWithRandomArray(readAnswer());
     }
 
-    public static void printResult(String sourceSequence, String finalSequence, int amountElements)
+    public static void printResult(String inputData, String outputData, int amountElements)
     {
         System.out.printf("{%s} -> {%s} - %d elements >= arithmetic mean of array.%n",
-                sourceSequence, finalSequence, amountElements);
+                inputData, outputData, amountElements);
     }
 
-    private static void startProgram(int[] sourceArray)
+    private static void startProgram(int[] inputArray)
     {
-        int[] finalArray = Logic.findElementsMoreMean(sourceArray);
-        int amountElements = Logic.findAmountElementsMoreMean(sourceArray);
+        int[] outputArray = Logic.findElementsMoreMean(inputArray);
+        int amountElements = Logic.findAmountElementsMoreMean(inputArray);
 
-        String stringSourceArray = Utils.toString(sourceArray);
-        String stringFinalArray = Utils.toString(finalArray);
+        String inputData = Utils.toString(inputArray);
+        String outputData = Utils.toString(outputArray);
 
-        printResult(stringSourceArray, stringFinalArray, amountElements);
+        printResult(inputData, outputData, amountElements);
     }
 
     private static String readAnswer()

@@ -29,19 +29,19 @@ public class Frame extends JFrame
           inputDataField = new JTextField();
           buttonDelete = new JButton("Delete");
 
-          initButtons();
-          initPanel(view);
+          addActionToButtons();
+          addComponentsToPanel(view);
           initFrame(panel);
      }
 
-     private void initButtons()
+     private void addActionToButtons()
      {
           buttonExecute.addActionListener(new ActionListener()
           {
                @Override
                public void actionPerformed(ActionEvent e)
                {
-                    controller.onCalcBtn(inputDataField.getText());
+                    controller.onButtonExecute(inputDataField.getText());
                }
           });
 
@@ -50,7 +50,7 @@ public class Frame extends JFrame
                @Override
                public void actionPerformed(ActionEvent e)
                {
-                    controller.onRandomBtn(inputDataField);
+                    controller.onButtonRandom(inputDataField);
                }
           });
 
@@ -59,12 +59,12 @@ public class Frame extends JFrame
                @Override
                public void actionPerformed(ActionEvent e)
                {
-                    controller.onDeleteBtn(inputDataField);
+                    controller.onButtonDelete(inputDataField);
                }
           });
      }
 
-     private void initPanel(View view)
+     private void addComponentsToPanel(View view)
      {
           panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
           panel.add(inputTextLabel);
@@ -79,9 +79,8 @@ public class Frame extends JFrame
      private void initFrame(JPanel panel)
      {
           this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-          this.setLocationRelativeTo(null);
           this.setBounds(0, 0, 500, 200);
-          this.setVisible(true);
           this.setContentPane(panel);
+          this.setVisible(true);
      }
 }

@@ -14,7 +14,7 @@ public class Controller
         this.view = view;
     }
 
-    public void onCalcBtn(String inputData)
+    public void onButtonExecute(String inputData)
     {
         try
         {
@@ -32,14 +32,14 @@ public class Controller
         view.setResultText(amountElements + " elements >= arithmetic mean of array");
     }
 
-    public void onRandomBtn(JTextField inputDataField)
+    public void onButtonRandom(JTextField inputDataField)
     {
         int[] randomArray = Utils.createRandomIntArray();
         String inputData = Utils.toString(randomArray);
         inputDataField.setText(inputData);
     }
 
-    public void onDeleteBtn(JTextField inputDataField)
+    public void onButtonDelete(JTextField inputDataField)
     {
         inputDataField.setText("");
         view.setOutputData("");
