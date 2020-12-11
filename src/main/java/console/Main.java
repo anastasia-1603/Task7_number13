@@ -17,7 +17,7 @@ public class Main
 
     public static void printResult(String sourceSequence, String finalSequence, int amountElements)
     {
-        System.out.printf("{%s} -> {%s} - %d elements greater / equal to the arithmetic mean of array.%n",
+        System.out.printf("{%s} -> {%s} - %d elements >= arithmetic mean of array.%n",
                 sourceSequence, finalSequence, amountElements);
     }
 

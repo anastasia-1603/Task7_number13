@@ -29,7 +29,7 @@ public class Controller
         String outputData = Utils.toString(model.getOutputArray());
         String amountElements = String.valueOf(model.getAmountElements());
         view.setOutputData(outputData);
-        view.setResultText(amountElements + " elements greater / equal to the arithmetic mean of array");
+        view.setResultText(amountElements + " elements >= arithmetic mean of array");
     }
 
     public void onRandomBtn(JTextField inputDataField)
