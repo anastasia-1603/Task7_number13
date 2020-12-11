@@ -1,8 +1,6 @@
-package gui; //исходная версия в MyDemo Logic
+package gui;
 
 import javax.swing.*;
-import common.Utils;
-
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -10,112 +8,80 @@ public class Frame extends JFrame
 {
      private Controller controller;
      private JPanel panel;
-     private JPanel panelButtons;
      private JTextField inputDataField;
-     private JTextField outputDataField;
-     private JButton executeButton;
-     private JButton randomButton;
+     private JButton buttonExecute;
+     private JButton buttonRandom;
+     private JButton buttonDelete;
      private JLabel inputTextLabel;
      private JLabel outputTextLabel;
-     private JLabel resultLabel;
 
-     public Frame(Controller controller)
+     public Frame(Controller controller, View view)
      {
           super("Calculations");
+
           this.controller = controller;
+
           panel = new JPanel();
-          panelButtons = new JPanel();
-          executeButton = new JButton("Calculate");
-          randomButton = new JButton("Fill with random");
+          buttonExecute = new JButton("Execute");
+          buttonRandom = new JButton("Fill with random");
           inputTextLabel = new JLabel("Enter an array of integers.");
-          outputTextLabel = new JLabel("Output");
-          outputDataField = new JTextField();
+          outputTextLabel = new JLabel("Result");
           inputDataField = new JTextField();
-          resultLabel = new JLabel(" ");
+          buttonDelete = new JButton("Delete");
 
+          initButtons();
+          initPanel(view);
+          initFrame(panel);
+     }
 
-          executeButton.addActionListener(new ActionListener()
+     private void initButtons()
+     {
+          buttonExecute.addActionListener(new ActionListener()
           {
                @Override
                public void actionPerformed(ActionEvent e)
                {
-                    go();
-                    this.pack();
+                    controller.onCalcBtn(inputDataField.getText());
                }
           });
 
-        /*  randomButton.addActionListener(new ActionListener()
+          buttonRandom.addActionListener(new ActionListener()
           {
                @Override
                public void actionPerformed(ActionEvent e)
                {
-                    fillRandom();
+                    controller.onRandomBtn(inputDataField);
                }
-          });*/
+          });
 
+          buttonDelete.addActionListener(new ActionListener()
+          {
+               @Override
+               public void actionPerformed(ActionEvent e)
+               {
+                    controller.onDeleteBtn(inputDataField);
+               }
+          });
+     }
+
+     private void initPanel(View view)
+     {
           panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
           panel.add(inputTextLabel);
           panel.add(inputDataField);
-        //  panelButtons.add(executeButton);
-         // panelButtons.add(randomButton);
-          panel.add(executeButton);
-          panel.add(randomButton);
-          panel.add(panelButtons);
+          panel.add(buttonExecute);
+          panel.add(buttonRandom);
+          panel.add(buttonDelete);
           panel.add(outputTextLabel);
-          panel.add(outputDataField);
-          panel.add(resultLabel);
-
-          this.setContentPane(panel);
-          initFrame();
-
+          view.addComponents(panel);
      }
 
-     public JTextField getInputDataField()
-     {
-          return inputDataField;
-     }
-
-     public void setOutputData(String outputData)
-     {
-          this.outputDataField.setText(outputData);
-     }
-
-     public void setResultText(String resultText)
-     {
-          this.resultLabel.setText(resultText);
-     }
-
-     private void initFrame()
+     private void initFrame(JPanel panel)
      {
           this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
           this.setLocationRelativeTo(null);
-          this.pack();
+          this.setBounds(0, 0, 500, 200);
           this.setVisible(true);
+          this.setContentPane(panel);
      }
-
-     public void go()
-     {
-          String inputData = inputDataField.getText();
-          controller.setInputDataInModel(inputData);
-          controller.start();
-          String outputData = controller.getOutputDataFromModel();
-          outputDataField.setText(outputData);
-          String amountElements = controller.getAmountElementsFromModel();
-          String resultText = amountElements + " elements greater than or equal to the arithmetic mean of array elements";
-          resultLabel.setText(resultText);
-     }
-
-    /* private void fillRandom()
-     {
-          int sizeArray = (int) (Math.random() * 15);
-          int[] arrayRandom = new int[sizeArray];
-          for(int i = 0; i < sizeArray; i++)
-          {
-               arrayRandom[i] = (int) (Math.random() * 1000) - 500;
-          }
-          String stringRandomNum = Utils.toString(arrayRandom);
-          inputDataField.setText(stringRandomNum);
-     }*/
-
-
 }

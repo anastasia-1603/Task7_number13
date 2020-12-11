@@ -4,31 +4,22 @@ import javax.swing.*;
 
 public class View
 {
-    /*
-    private Controller controller;
-    private Frame frame = new Frame();
-    JTextField inputDataField;
-    JTextField outputDataField;
-    JLabel resultLabel;
+    JTextField outputDataField = new JTextField();
+    JLabel resultLabel = new JLabel();
 
-
-    public View(Controller controller)
+    public void setOutputData(String outputData)
     {
-        this.controller = controller;
-        go();
-
+        this.outputDataField.setText(outputData);
     }
 
-    public void go()
+    public void setResultText(String text)
     {
-        String inputData = frame.getInputDataField().getText();
-        controller.setInputDataInModel(inputData);
-        String outputData = controller.getOutputDataFromModel();
-        frame.setOutputData(outputData);
-        String amountElements = controller.getAmountElementsFromModel();
-        String resultText = amountElements + "elements greater than or equal to the arithmetic mean of array elements";
-        frame.setResultText(resultText);
+        this.resultLabel.setText(text);
     }
 
-*/
+    public void addComponents(JPanel panel)
+    {
+         panel.add(outputDataField);
+         panel.add(resultLabel);
+    }
 }

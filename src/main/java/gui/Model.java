@@ -1,9 +1,11 @@
 package gui;
+
 import common.Logic;
+
 public class Model
 {
     private int[] inputArray;
-    private int amountElementsMoreMean;
+    private int amountElements;
     private int[] outputArray;
 
     public void setInputArray(int[] inputArray)
@@ -11,27 +13,27 @@ public class Model
         this.inputArray = inputArray;
     }
 
-    public void findAmountElements()
+    public void calcAmountElements()
     {
-        this.amountElementsMoreMean = Logic.findAmountElementsMoreMean(this.inputArray);
+       amountElements = Logic.findAmountElementsMoreMean(inputArray);
     }
 
-    public void findOutputArray()
+    public void calcOutputArray()
     {
-        this.outputArray = Logic.findElementsMoreMean(this.inputArray);
+        outputArray = Logic.findElementsMoreMean(inputArray);
     }
 
-    public void startFinding()
+    public void startCalculation()
     {
-        findOutputArray();
-        findAmountElements();
+        calcOutputArray();
+        calcAmountElements();
     }
 
     public int[] getOutputArray() {
         return outputArray;
     }
 
-    public int getAmountElementsMoreMean() {
-        return amountElementsMoreMean;
+    public int getAmountElements() {
+        return amountElements;
     }
 }

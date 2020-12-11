@@ -28,9 +28,23 @@ public class Utils
     public static int[] readIntArrayFromConsole(String arrName)
     {
         Scanner scanner = new Scanner(System.in);
-        System.out.printf("Enter %s: ", arrName);
-        String line = scanner.nextLine();
-        return toIntArray(line);
+        while (true)
+        {
+            try
+            {
+                if (arrName == null || arrName.length() == 0)
+                {
+                    arrName = "";
+                }
+                System.out.printf("Enter %s: ", arrName);
+                String line = scanner.nextLine();
+                return toIntArray(line);
+            }
+            catch(Exception e)
+            {
+                System.err.printf("Error! Try again:%n");
+            }
+        }
     }
 
     public static int[] toPrimitive(Integer[] arr)
@@ -60,5 +74,16 @@ public class Utils
         }
         Integer[] arr = list.toArray(new Integer[0]);
         return toPrimitive(arr);
+    }
+
+    public static int[] createRandomIntArray()
+    {
+        int sizeArray = (int) (Math.random() * 15);
+        int[] randomArray = new int[sizeArray];
+        for(int i = 0; i < sizeArray; i++)
+        {
+            randomArray[i] = (int) (Math.random() * 1000) - 500;
+        }
+        return randomArray;
     }
 }

@@ -2,61 +2,57 @@ package console;
 
 import common.*;
 
+import java.util.Scanner;
+
 public class Main
 {
     public static void main(String[] args)
     {
         int[] sourceArray = Utils.readIntArrayFromConsole("array of integer numbers");
-        int[] finalArray = Logic.findElementsMoreMean(sourceArray);
-        int amountElements = Logic.findAmountElementsMoreMean(sourceArray);
-        String stringSourceArray = Utils.toString(sourceArray);
-        String stringFinalArray = Utils.toString(finalArray);
-        printResult(stringSourceArray, stringFinalArray, amountElements);
+        startProgram(sourceArray);
+
+        System.out.println("Run with an array of random numbers? [yes / no]");
+        startWithRandomArray(readAnswer());
     }
 
     public static void printResult(String sourceSequence, String finalSequence, int amountElements)
     {
-        System.out.printf("{%s} -> {%s} - %d elements greater than or equal to the arithmetic mean of array elements\n",
+        System.out.printf("{%s} -> {%s} - %d elements greater / equal to the arithmetic mean of array.%n",
                 sourceSequence, finalSequence, amountElements);
     }
 
-   /* public static double findArithmeticMean(int[] arr)
+    private static void startProgram(int[] sourceArray)
     {
-        double sum = 0;
-        for (int j : arr)
-        {
-            sum += j;
-        }
-        return sum / arr.length;
+        int[] finalArray = Logic.findElementsMoreMean(sourceArray);
+        int amountElements = Logic.findAmountElementsMoreMean(sourceArray);
+
+        String stringSourceArray = Utils.toString(sourceArray);
+        String stringFinalArray = Utils.toString(finalArray);
+
+        printResult(stringSourceArray, stringFinalArray, amountElements);
     }
 
-    public static int[] findElementsMoreArithmeticMean(int[] arr)
+    private static String readAnswer()
     {
-        List<Integer> list = new ArrayList<>();
-        for (int j : arr)
-        {
-            if (j >= findArithmeticMean(arr) && j != findMinElement(arr))
-            {
-                list.add(j);
-            }
-        }
-        Integer[] array = list.toArray(new Integer[0]);
-        return Utils.toPrimitive(array);
+        Scanner scn = new Scanner(System.in);
+        return scn.next();
     }
 
-    public static int findMinElement(int[] array)
+    private static void startWithRandomArray(String answer)
     {
-        int min = array[0];
-        for (int j : array)
+        if (answer.equalsIgnoreCase("yes"))
         {
-            if (j < min)
-            {
-                min = j;
-            }
+            int[] randomArray = Utils.createRandomIntArray();
+            startProgram(randomArray);
         }
-        return min;
-    }*/
-
-
+        else if (answer.equalsIgnoreCase("no"))
+        {
+            return;
+        }
+        else
+        {
+            System.err.print("You did not enter an answer [yes/no]");
+        }
+    }
 }
 
